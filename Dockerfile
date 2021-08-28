@@ -1,7 +1,10 @@
 FROM python:3
 ENV PYTHONUNBUFFERED=1
-COPY . /code/
-WORKDIR /code
 
 RUN pip3 install pipenv
-RUN pipenv install --system --deploy --ignore-pipfile
+
+WORKDIR /app
+COPY Pipfile.lock .
+RUN pipenv install --ignore-pipfile
+
+COPY . .
