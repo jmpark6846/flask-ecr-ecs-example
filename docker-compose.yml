@@ -4,7 +4,7 @@ services:
   app:
     container_name: 'app'
     restart: always
-    image: 155706891817.dkr.ecr.ap-northeast-2.amazonaws.com/flask-ecr-ecs-demo
+    image: flask-ecs-demo/app
     build: app
     ports:
       - "8000:8000"
@@ -13,7 +13,7 @@ services:
   nginx:
     container_name: nginx
     restart: always
-    image: flask-ecr-ecs-demo/nginx
+    image: flask-ecs-demo/nginx
     build: nginx
     ports:
     - "80:80"

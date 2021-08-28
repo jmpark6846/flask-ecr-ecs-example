@@ -40,7 +40,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: flask-ecr-ecs-demo
-          IMAGE_TAG: app-${{ github.sha }}
+          IMAGE_TAG: app
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG app
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -49,9 +49,9 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: flask-ecr-ecs-demo
-          IMAGE_TAG: nginx-${{ github.sha }}
+          IMAGE_TAG: nginx
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG app
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG nginx
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #
 #    - name: Fill in the new image ID in the Amazon ECS task definition
