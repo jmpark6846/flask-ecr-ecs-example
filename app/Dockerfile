@@ -7,4 +7,4 @@ WORKDIR /app
 COPY Pipfile.lock .
 RUN pipenv install --ignore-pipfile
 
-COPY .. .
+COPY . .
