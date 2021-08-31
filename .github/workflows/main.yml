@@ -57,13 +57,13 @@ jobs:
         run: |
           echo app - ${{ steps.app_build.outputs.digest }}
           echo nginx - ${{ steps.nginx_build.outputs.digest }}
-#
-#      - name: Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: ap-northeast-2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
 #
 #      - name: Login to Amazon ECR
 #        id: login-ecr
@@ -87,18 +87,18 @@ jobs:
 #          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG nginx
 #          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #
-#    - name: Fill in the new image ID in the Amazon ECS task definition
-#      id: task-def
-#      uses: aws-actions/amazon-ecs-render-task-definition@v1
-#      with:
-#        task-definition: task-definition.json
-#        container-name: my-container
-#        image: ${{ steps.build-image.outputs.image }}
-#
-#    - name: Deploy Amazon ECS task definition
-#      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-#      with:
-#        task-definition: ${{ steps.task-def.outputs.task-definition }}
-#        service: my-service
-#        cluster: my-cluster
-#        wait-for-service-stability: true
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: app-task-definition.json
+        container-name: app
+        image: ${{ steps.build-image.outputs.image }}
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: flaskapp-AppService-MAZH9lAc6Ong
+        cluster: flaskappUpdate
+        wait-for-service-stability: true

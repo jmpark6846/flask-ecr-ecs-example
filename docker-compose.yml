@@ -4,7 +4,8 @@ services:
   app:
     container_name: 'app'
     restart: always
-    image: 155706891817.dkr.ecr.ap-northeast-2.amazonaws.com/flask-ecr-ecs-demo:app
+    image: jmpark6846/flask-demo-app
+    x-aws-pull_credentials: arn:aws:secretsmanager:ap-northeast-2:155706891817:secret:dockerhubAccessToken-hxMqte
     build: app
     ports:
       - "8000:8000"
@@ -13,7 +14,8 @@ services:
   nginx:
     container_name: nginx
     restart: always
-    image: 155706891817.dkr.ecr.ap-northeast-2.amazonaws.com/flask-ecr-ecs-demo:nginx
+    image: jmpark6846/flask-demo-nginx
+    x-aws-pull_credentials: arn:aws:secretsmanager:ap-northeast-2:155706891817:secret:dockerhubAccessToken-hxMqte
     build: nginx
     ports:
     - "80:80"

@@ -1,0 +1,218 @@
+{
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::155706891817:role/flaskapp-AppTaskExecutionRole-1KQ6K2PM35T1D",
+  "containerDefinitions": [
+    {
+      "dnsSearchDomains": [],
+      "environmentFiles": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": [],
+        "options": {
+          "awslogs-group": "/docker-compose/flaskapp",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "flaskapp"
+        }
+      },
+      "entryPoint": [],
+      "portMappings": [],
+      "command": [
+        "ap-northeast-2.compute.internal",
+        "flaskapp.local"
+      ],
+      "linuxParameters": null,
+      "cpu": 0,
+      "environment": [],
+      "resourceRequirements": null,
+      "ulimits": [],
+      "dnsServers": [],
+      "mountPoints": [],
+      "workingDirectory": null,
+      "secrets": [],
+      "dockerSecurityOptions": [],
+      "memory": null,
+      "memoryReservation": null,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "docker/ecs-searchdomain-sidecar:1.0",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": false,
+      "links": [],
+      "hostname": null,
+      "extraHosts": [],
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": {},
+      "systemControls": [],
+      "privileged": null,
+      "name": "App_ResolvConf_InitContainer"
+    },
+    {
+      "dnsSearchDomains": [],
+      "environmentFiles": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": [],
+        "options": {
+          "awslogs-group": "/docker-compose/flaskapp",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "flaskapp"
+        }
+      },
+      "entryPoint": [],
+      "portMappings": [
+        {
+          "hostPort": 8000,
+          "protocol": "tcp",
+          "containerPort": 8000
+        }
+      ],
+      "command": [
+        "pipenv",
+        "run",
+        "gunicorn",
+        "-w",
+        "1",
+        "-b",
+        "0.0.0.0:8000",
+        "wsgi:app"
+      ],
+      "linuxParameters": {
+        "capabilities": null,
+        "sharedMemorySize": null,
+        "tmpfs": [],
+        "devices": [],
+        "maxSwap": null,
+        "swappiness": null,
+        "initProcessEnabled": null
+      },
+      "cpu": 0,
+      "environment": [],
+      "resourceRequirements": null,
+      "ulimits": [],
+      "repositoryCredentials": {
+        "credentialsParameter": "arn:aws:secretsmanager:ap-northeast-2:155706891817:secret:dockerhubAccessToken-hxMqte"
+      },
+      "dnsServers": [],
+      "mountPoints": [],
+      "workingDirectory": null,
+      "secrets": [],
+      "dockerSecurityOptions": [],
+      "memory": null,
+      "memoryReservation": null,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "docker.io/jmpark6846/flask-demo-app:latest@sha256:974c791f80072f58154bd690f47ecdf3fefeb204045e1887eb68d777c0f32574",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": [
+        {
+          "containerName": "App_ResolvConf_InitContainer",
+          "condition": "SUCCESS"
+        }
+      ],
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": [],
+      "hostname": null,
+      "extraHosts": [],
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": {},
+      "systemControls": [],
+      "privileged": null,
+      "name": "app"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "512",
+  "taskRoleArn": null,
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:155706891817:task-definition/flaskapp-app:1",
+  "family": "flaskapp-app",
+  "requiresAttributes": [
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.private-registry-authentication.secretsmanager"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.container-ordering"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.22"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.task-eni"
+    }
+  ],
+  "pidMode": null,
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "revision": 1,
+  "status": "ACTIVE",
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": []
+}
