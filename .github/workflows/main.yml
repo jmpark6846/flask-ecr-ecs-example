@@ -42,7 +42,7 @@ jobs:
           context: ./app
           file: ./app/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-demo-app:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-demo-app
 
       - name: nginx - Build and push
         id: nginx_build
@@ -51,7 +51,7 @@ jobs:
           context: ./nginx
           file: ./nginx/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-demo-nginx:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-demo-nginx
 
       - name: Image digest
         run: |
@@ -65,15 +65,23 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: Fill in the new image ID in the Amazon ECS task definition
+      - name: app - Fill in the image URI in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: app-task-definition.json
           container-name: app
-          image: jmpark6846/flask-demo-app
+          image: jmpark6846/flask-demo-app:latest
 
-      - name: Deploy Amazon ECS task definition
+      - name: nginx - Fill in the image URI in the Amazon ECS task definition
+        id: task-def-nginx
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: nginx-task-definition.json
+          container-name: nginx
+          image: jmpark6846/flask-demo-nginx:latest
+
+      - name: app - Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
@@ -81,15 +89,7 @@ jobs:
           cluster: flaskapp
           wait-for-service-stability: true
 
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def-nginx
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: nginx-task-definition.json
-          container-name: nginx
-          image: jmpark6846/flask-demo-nginx
-
-      - name: Deploy Amazon ECS task definition
+      - name: nginx - Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def-nginx.outputs.task-definition }}

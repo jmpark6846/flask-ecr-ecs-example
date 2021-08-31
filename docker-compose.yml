@@ -10,6 +10,18 @@ services:
     ports:
       - "8000:8000"
     command: pipenv run gunicorn -w 1 -b 0.0.0.0:8000 wsgi:app
+    depends_on:
+      - db
+
+  db:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=p@ssw0rd1
+    volumes:
+    - mysql:/var/lib/mysql
+    - mysql_config:/etc/mysql
 
   nginx:
     container_name: nginx
@@ -22,3 +34,6 @@ services:
     depends_on:
       - app
 
+  volumes:
+    mysql:
+    mysql_config:
