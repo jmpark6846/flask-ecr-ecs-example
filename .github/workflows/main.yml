@@ -39,8 +39,8 @@ jobs:
         id: app_build
         uses: docker/build-push-action@v2
         with:
-          context: ./app
-          file: ./Dockerfile
+          context: /app
+          file: /app/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-demo-app:latest
 
@@ -48,8 +48,8 @@ jobs:
         id: nginx_build
         uses: docker/build-push-action@v2
         with:
-          context: ./nginx
-          file: ./Dockerfile
+          context: /nginx
+          file: /nginx/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-demo-nginx:latest
 
