@@ -108,7 +108,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "docker.io/jmpark6846/flask-demo-app:latest@sha256:974c791f80072f58154bd690f47ecdf3fefeb204045e1887eb68d777c0f32574",
+      "image": "jmpark6846/flask-demo-app:latest",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": [

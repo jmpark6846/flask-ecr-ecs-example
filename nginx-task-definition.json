@@ -99,7 +99,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "docker.io/jmpark6846/flask-demo-nginx:latest@sha256:30218cf125e0960b2b4d132e0f1b5cb0c124360d5280ef3bbe899d90ff955092",
+      "image": "jmpark6846/flask-demo-nginx:latest",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": [
