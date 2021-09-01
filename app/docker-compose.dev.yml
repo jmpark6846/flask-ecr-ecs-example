@@ -14,7 +14,6 @@ services:
    - FLASK_ENV=development
   command: pipenv run python3 -m flask run --host=0.0.0.0
 
-
  mysqldb:
   image: mysql
   ports:
