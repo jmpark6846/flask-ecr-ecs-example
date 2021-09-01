@@ -85,7 +85,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: flaskapp-AppService-MAZH9lAc6Ong
+          service: flaskapp-AppService-0XA2xu9DNYKI
           cluster: flaskapp
           wait-for-service-stability: true
 
@@ -93,6 +93,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def-nginx.outputs.task-definition }}
-          service: flaskapp-NginxService-jCHCoJouh70F
+          service: flaskapp-NginxService-nZhfD73fELQV
           cluster: flaskapp
           wait-for-service-stability: true

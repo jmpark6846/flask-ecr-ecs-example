@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::155706891817:role/flaskapp-AppTaskExecutionRole-1KQ6K2PM35T1D",
+  "executionRoleArn": "arn:aws:iam::155706891817:role/flaskapp-AppTaskExecutionRole-1EN0DIUV245QH",
   "containerDefinitions": [
     {
       "dnsSearchDomains": [],
@@ -108,7 +108,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "jmpark6846/flask-demo-app:latest",
+      "image": "docker.io/jmpark6846/flask-demo-app:latest@sha256:36a5c480c748a3c3fe5035a6d3b6c4bc6925c03e2c08ee31c1bd276534883017",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": [
@@ -140,7 +140,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:155706891817:task-definition/flaskapp-app:1",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:155706891817:task-definition/flaskapp-app:10",
   "family": "flaskapp-app",
   "requiresAttributes": [
     {
@@ -210,7 +210,7 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 1,
+  "revision": 10,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,

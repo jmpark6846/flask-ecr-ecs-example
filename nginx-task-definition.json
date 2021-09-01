@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::155706891817:role/flaskapp-NginxTaskExecutionRole-138JPD8GG4JEE",
+  "executionRoleArn": "arn:aws:iam::155706891817:role/flaskapp-NginxTaskExecutionRole-1SBVRSI0D35J6",
   "containerDefinitions": [
     {
       "dnsSearchDomains": [],
@@ -99,7 +99,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "jmpark6846/flask-demo-nginx:latest",
+      "image": "docker.io/jmpark6846/flask-demo-nginx:latest@sha256:ea816e5decf811ef84ce2bb35d3d20176ca3778a6bab5a7928ad9a5da09c9ec2",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": [
@@ -131,7 +131,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:155706891817:task-definition/flaskapp-nginx:1",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:155706891817:task-definition/flaskapp-nginx:8",
   "family": "flaskapp-nginx",
   "requiresAttributes": [
     {
@@ -201,7 +201,7 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 1,
+  "revision": 8,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
