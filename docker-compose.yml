@@ -16,10 +16,10 @@ services:
     image: mysql
     ports:
       - 3306:3306
-#    env_file:
-#      - .prod.env
+    env_file:
+      - .prod.env
     environment:
-      - MYSQL_ROOT_PASSWORD=p@ssw0rd1
+      - MYSQL_ROOT_PASSWORD
 
   nginx:
     container_name: nginx
