@@ -93,7 +93,8 @@
         "initProcessEnabled": null
       },
       "cpu": 0,
-      "environment": [],
+      "environment": [
+      ],
       "resourceRequirements": null,
       "ulimits": [],
       "repositoryCredentials": {
@@ -102,7 +103,16 @@
       "dnsServers": [],
       "mountPoints": [],
       "workingDirectory": null,
-      "secrets": [],
+      "secrets": [
+        {
+          "name": "MYSQL_ROOT_PASSWORD",
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:155706891817:secret:flask-ecs-demo-secret-afo8DH"
+        },
+        {
+          "name": "MYSQL_ROOT_USER",
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:155706891817:secret:flask-ecs-demo-secret-afo8DH"
+        }
+      ],
       "dockerSecurityOptions": [],
       "memory": null,
       "memoryReservation": null,

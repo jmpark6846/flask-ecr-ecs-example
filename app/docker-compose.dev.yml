@@ -9,20 +9,21 @@ services:
   volumes:
   - ./:/app
   depends_on:
-   - mysqldb
+   - db
   environment:
    - FLASK_ENV=development
   command: pipenv run python3 -m flask run --host=0.0.0.0
 
- mysqldb:
+ db:
   image: mysql
   ports:
   - 3306:3306
   environment:
-  - MYSQL_ROOT_PASSWORD=p@ssw0rd1
+   - MYSQL_ROOT_USER
+   - MYSQL_ROOT_PASSWORD
   volumes:
-  - mysql:/var/lib/mysql
-  - mysql_config:/etc/mysql
+   - mysql:/var/lib/mysql
+   - mysql_config:/etc/mysql
 
 volumes:
   mysql:

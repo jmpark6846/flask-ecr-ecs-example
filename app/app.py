@@ -1,5 +1,6 @@
-import mysql.connector
 import json
+import mysql.connector
+import os
 from flask import Flask
 
 app = Flask(__name__)
@@ -7,15 +8,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hello World!"
+    return "Hello World!" + os.getenv('MYSQL_ROOT_USER')
 
 
 @app.route('/initdb')
 def db_init():
     mydb = mysql.connector.connect(
         host="db",
-        user="root",
-        password="p@ssw0rd1",
+        user=os.getenv('MYSQL_ROOT_USER'),
+        password=os.getenv('MYSQL_ROOT_PASSWORD'),
     )
     cursor = mydb.cursor()
 
@@ -25,8 +26,8 @@ def db_init():
 
     mydb = mysql.connector.connect(
         host="db",
-        user="root",
-        password="p@ssw0rd1",
+        user=os.getenv('MYSQL_ROOT_USER'),
+        password=os.getenv('MYSQL_ROOT_PASSWORD'),
         database="inventory"
     )
     cursor = mydb.cursor()
@@ -42,8 +43,8 @@ def db_init():
 def get_widgets():
     mydb = mysql.connector.connect(
         host="db",
-        user="root",
-        password="p@ssw0rd1",
+        user=os.getenv('MYSQL_ROOT_USER'),
+        password=os.getenv('MYSQL_ROOT_PASSWORD'),
         database="inventory"
     )
     cursor = mydb.cursor()

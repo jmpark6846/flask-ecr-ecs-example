@@ -68,6 +68,8 @@ jobs:
       - name: app - Fill in the image URI in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
+        env:
+
         with:
           task-definition: app-task-definition.json
           container-name: app
